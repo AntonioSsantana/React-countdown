@@ -1,9 +1,9 @@
-const registerValidate = (email, password) => {
+const registerValidate = (name, email, password) => {
   const REGEX = /^\S+@\S+\.\S+$/;
-  const MIN_LENGTH = 8;
+  const MIN_PASSWORD = 8;
+  const MIN_NAME = 3;
 
-
-  if (REGEX.test(email) && password.length >= MIN_LENGTH) {
+  if (name.length >= MIN_NAME && REGEX.test(email) && password.length >= MIN_PASSWORD) {
     return false;
   }
 

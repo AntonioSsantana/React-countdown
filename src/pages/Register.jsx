@@ -12,11 +12,12 @@ function Register() {
   });
 
   const [disableStatus, setDisableStatus] = useState(true);
+  const [registrationCompleted, setCompleted] = useState(false);
 
   useEffect(() => {
     try {
-      const { email, password } = userCredentials;
-      !registerValidate(email, password) ? (setDisableStatus(false)) : (setDisableStatus(true))
+      const { name, email, password } = userCredentials;
+      !registerValidate(name, email, password) ? (setDisableStatus(false)) : (setDisableStatus(true))
     } catch (error) {
       console.log(error);
     }
@@ -50,6 +51,19 @@ function Register() {
 
   }
 
+  const onClickFunc = ({ target }) => {
+    const { name } = target;
+
+    switch (name) {
+      case 'register-button':
+        localStorage.setItem('user', JSON.stringify(userCredentials));
+        setCompleted(true);
+        break;
+      default:
+        break;
+    }
+  };
+
   return (
     <main>
       <article>
@@ -81,10 +95,14 @@ function Register() {
           <button
             type="button"
             name="register-button"
+            onClick={onClickFunc}
             disabled={disableStatus}
           >
             Registrar
           </button>
+          {
+            registrationCompleted ? ( <span>Registro concluído ✅</span> ) : ( null )
+          }
           <Link
             to="/login"
           >
@@ -94,6 +112,7 @@ function Register() {
       </article>
       <article>
         <ul>
+          <li>O nome de usuário deve conter no mínimo 3 caracteres</li>
           <li>O email deve ser válido</li>
           <li>A senha deve conter no mínimo 8 caracteres</li>
         </ul>
