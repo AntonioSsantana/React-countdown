@@ -1,9 +1,13 @@
 import { CHeader } from "../components";
 
 function Home() {
+  const { name } = JSON.parse(localStorage.getItem('sing_up_user'));
+
   return (
     <>
-      <CHeader />
+      <CHeader
+        name={name}
+      />
       <main>
         <article>
           <h2>Hours : Minutes : Seconds</h2>
