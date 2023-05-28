@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
   const navigate = useNavigate();
-  
+
   const [userCredentials, setCredentials] = useState({
     name: '',
     email: '',
@@ -11,16 +11,27 @@ function Login() {
   });
 
   const [loginFail, setLoginFail] = useState(false);
-  
-  useEffect(() => {
-    try {
-      const userRegistered = JSON.parse(localStorage.getItem('user_registered'));
-      const { email, password } = userRegistered;
-      console.log(email, password)
-    } catch (error) {
-      console.log(error);
+
+  const onChangeFunc = ({ target }) => {
+    const { name, value } = target;
+
+    switch (name) {
+      case 'email-input':
+        setCredentials({
+          ...userCredentials,
+          email: value
+        })
+        break;
+      case 'password-input':
+        setCredentials({
+          ...userCredentials,
+          password: value
+        });
+        break;
+      default:
+        break;
     }
-  }, [])
+  };
 
   return (
     <main>
@@ -31,6 +42,7 @@ function Login() {
             <input
               type="text"
               name="email-input"
+              onChange={onChangeFunc}
             />
           </label>
           <label>
@@ -38,6 +50,7 @@ function Login() {
             <input
               type="password"
               name="password-input"
+              onChange={onChangeFunc}
             />
           </label>
           <button
