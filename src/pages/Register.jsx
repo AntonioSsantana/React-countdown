@@ -16,7 +16,7 @@ function Register() {
   useEffect(() => {
     try {
       const { email, password } = userCredentials;
-      !registerValidate(email, password) ? ( setDisableStatus(false) ) : ( setDisableStatus(true) )
+      !registerValidate(email, password) ? (setDisableStatus(false)) : (setDisableStatus(true))
     } catch (error) {
       console.log(error);
     }
@@ -55,7 +55,7 @@ function Register() {
       <article>
         <form>
           <label htmlFor="name-input">
-            Nome
+            <span>Nome</span>
             <input
               type="text"
               name="name-input"
@@ -63,7 +63,7 @@ function Register() {
             />
           </label>
           <label htmlFor="email-input">
-            Email
+            <span>Email</span>
             <input
               type="text"
               name="email-input"
@@ -71,7 +71,7 @@ function Register() {
             />
           </label>
           <label>
-            Password
+            <span>Password</span>
             <input
               type="password"
               name="password-input"
@@ -91,6 +91,12 @@ function Register() {
             Login
           </Link>
         </form>
+      </article>
+      <article>
+        <ul>
+          <li>O email deve ser válido</li>
+          <li>A senha deve conter no mínimo 8 caracteres</li>
+        </ul>
       </article>
     </main>
   );
