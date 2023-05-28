@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
@@ -33,6 +33,34 @@ function Login() {
     }
   };
 
+  const onClickFunc = ({ target }) => {
+    const { name } = target;
+
+    switch (name) {
+      case 'login-button':
+        try {
+          const { name, email, password } = JSON.parse(localStorage.getItem('user_registered'));
+
+          if (email === userCredentials.email && password === userCredentials.password) {
+            localStorage.setItem('sing_up_user', JSON.stringify({
+              name,
+              email,
+              password,
+            }));
+
+            navigate('/home');
+          }
+
+          return setLoginFail(true);
+        } catch (error) {
+          console.log(error);
+        }
+        break;
+      default:
+        break;
+    }
+  };
+
   return (
     <main>
       <article>
@@ -56,9 +84,13 @@ function Login() {
           <button
             type="button"
             name="login-button"
+            onClick={onClickFunc}
           >
             Login
           </button>
+          {
+            loginFail ? (<span>⚠️ Usuário não existe</span>) : (null)
+          }
           <Link
             to="/register"
           >
