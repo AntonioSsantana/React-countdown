@@ -1,6 +1,11 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 function Register() {
+  const [userName, setUserName] = useState('');
+  const [userEmail, setUserEmail] = useState('');
+  const [userPassword, setUserPassword] = useState('');
+    
   return (
     <main>
       <article>
@@ -26,7 +31,10 @@ function Register() {
               name="password-input"
             />
           </label>
-          <button>
+          <button
+            type="button"
+            name="register-button"
+          >
             Registrar
           </button>
           <Link
