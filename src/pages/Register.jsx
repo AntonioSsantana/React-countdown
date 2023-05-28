@@ -2,10 +2,36 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 function Register() {
-  const [userName, setUserName] = useState('');
-  const [userEmail, setUserEmail] = useState('');
-  const [userPassword, setUserPassword] = useState('');
-    
+  const [userCredentials, setCredentials] = useState({});
+
+  const onChangeFunc = ({ target }) => {
+    const { name, value } = target;
+
+    switch (name) {
+      case 'name-input':
+        setCredentials({
+          ...userCredentials,
+          name: value
+        })
+        break;
+      case 'email-input':
+        setCredentials({
+          ...userCredentials,
+          email: value
+        })
+        break;
+      case 'password-input':
+        setCredentials({
+          ...userCredentials,
+          password: value
+        })
+        break;
+      default:
+        break;
+    }
+
+  }
+
   return (
     <main>
       <article>
@@ -15,6 +41,7 @@ function Register() {
             <input
               type="text"
               name="name-input"
+              onChange={onChangeFunc}
             />
           </label>
           <label htmlFor="email-input">
@@ -22,6 +49,7 @@ function Register() {
             <input
               type="text"
               name="email-input"
+              onChange={onChangeFunc}
             />
           </label>
           <label>
@@ -29,6 +57,7 @@ function Register() {
             <input
               type="password"
               name="password-input"
+              onChange={onChangeFunc}
             />
           </label>
           <button
