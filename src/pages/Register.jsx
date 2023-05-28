@@ -56,7 +56,7 @@ function Register() {
 
     switch (name) {
       case 'register-button':
-        localStorage.setItem('user', JSON.stringify(userCredentials));
+        localStorage.setItem('user_registered', JSON.stringify(userCredentials));
         setCompleted(true);
         break;
       default:
