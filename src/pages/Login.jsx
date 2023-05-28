@@ -54,6 +54,7 @@ function Login() {
           return setLoginFail(true);
         } catch (error) {
           console.log(error);
+          setLoginFail(true);
         }
         break;
       default:
