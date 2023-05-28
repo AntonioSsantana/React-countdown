@@ -1,12 +1,13 @@
 const registerValidate = (email, password) => {
-  const REGEX = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+\.([a-z]+)?$/i;
+  const REGEX = /^\S+@\S+\.\S+$/;
   const MIN_LENGTH = 8;
 
+
   if (REGEX.test(email) && password.length >= MIN_LENGTH) {
-    return true;
+    return false;
   }
 
-  return false;
+  return true;
 }
 
 export default registerValidate;

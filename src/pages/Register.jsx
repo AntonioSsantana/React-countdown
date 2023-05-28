@@ -1,10 +1,26 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
+// Validation
+import registerValidate from "../validations/Register.validation";
+
 function Register() {
-  const [userCredentials, setCredentials] = useState({});
+  const [userCredentials, setCredentials] = useState({
+    name: '',
+    email: '',
+    password: ''
+  });
 
   const [disableStatus, setDisableStatus] = useState(true);
+
+  useEffect(() => {
+    try {
+      const { email, password } = userCredentials;
+      !registerValidate(email, password) ? ( setDisableStatus(false) ) : ( setDisableStatus(true) )
+    } catch (error) {
+      console.log(error);
+    }
+  }, [userCredentials]);
 
   const onChangeFunc = ({ target }) => {
     const { name, value } = target;
