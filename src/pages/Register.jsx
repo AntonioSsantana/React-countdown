@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 function Register() {
   const [userCredentials, setCredentials] = useState({});
 
+  const [disableStatus, setDisableStatus] = useState(true);
+
   const onChangeFunc = ({ target }) => {
     const { name, value } = target;
 
@@ -63,6 +65,7 @@ function Register() {
           <button
             type="button"
             name="register-button"
+            disabled={disableStatus}
           >
             Registrar
           </button>
