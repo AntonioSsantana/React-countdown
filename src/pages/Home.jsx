@@ -12,13 +12,34 @@ function Home() {
 
 
   useEffect(() => {
+    let interval;
+    
+    if(activate){
+      interval = setInterval(() => {
+        const totalSeconds = parseInt(hours) * 3600 + parseInt(minutes) * 60 + parseInt(seconds);
+        if(totalSeconds > 0){
+          const newTotalSeconds = totalSeconds - 1;
+          const newHours = Math.floor(newTotalSeconds / 3600);
+          const newMinutes = Math.floor((newTotalSeconds % 3600) / 60);
+          const newSeconds = newTotalSeconds % 60;
 
-  }, []);
+          setHours(newHours);
+          setMinutes(newMinutes);
+          setSeconds(newSeconds);
+        } else {
+          clearInterval(interval);
+          setActivate(false);
+        }
+      }, 1000);
+    }
+
+    return () => clearInterval(interval);
+  }, [activate, hours, minutes, seconds]);
 
   const onClickFunction = ({ target: { name } }) => {
     switch (name) {
       case 'confirm-button':
-        if (hours > 0 && minutes > 0 && seconds > 0) {
+        if (hours > 0 || minutes > 0 || seconds > 0) {
           setActivate(true);
         }
         break;
