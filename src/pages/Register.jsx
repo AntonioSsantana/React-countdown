@@ -17,7 +17,7 @@ function Register() {
   useEffect(() => {
     try {
       const { name, email, password } = userCredentials;
-      !registerValidate(name, email, password) ? (setDisableStatus(false)) : (setDisableStatus(true))
+      !registerValidate(name, email, password) ? (setDisableStatus(false)) : (setDisableStatus(true));
     } catch (error) {
       console.log(error);
     }
@@ -31,25 +31,25 @@ function Register() {
         setCredentials({
           ...userCredentials,
           name: value
-        })
+        });
         break;
       case 'email-input':
         setCredentials({
           ...userCredentials,
           email: value
-        })
+        });
         break;
       case 'password-input':
         setCredentials({
           ...userCredentials,
           password: value
-        })
+        });
         break;
       default:
         break;
     }
 
-  }
+  };
 
   const onClickFunc = ({ target }) => {
     const { name } = target;

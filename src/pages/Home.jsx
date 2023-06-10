@@ -1,6 +1,5 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { CHeader } from "../components";
-import { useState } from "react";
 
 function Home() {
   const { name } = JSON.parse(localStorage.getItem('sing_up_user'));
@@ -19,7 +18,12 @@ function Home() {
   const onClickFunction = ({ target: { name } }) => {
     switch (name) {
       case 'confirm-button':
-        setActivate(true);
+        if (hours > 0 && minutes > 0 && seconds > 0) {
+          setActivate(true);
+        }
+        break;
+      case 'reset-button':
+        window.location.reload();
         break;
       default:
         break;
@@ -29,22 +33,13 @@ function Home() {
   const onChangeFunction = ({ target: { name, value } }) => {
     switch (name) {
       case 'input-hours':
-        if (hours > 0) {
-          break;
-        }
         setHours(value);
         break;
       case 'input-minutes':
-        if (hours > 0) {
-          break;
-        }
         setMinutes(value);
         break;
       case 'input-seconds':
-        if (hours > 0) {
-          break;
-        }
-        setSeconds(value)
+        setSeconds(value);
         break;
       default:
         break;
@@ -105,6 +100,13 @@ function Home() {
             onClick={onClickFunction}
           >
             Iniciar
+          </button>
+          <button
+            type="button"
+            name="reset-button"
+            onClick={onClickFunction}
+          >
+            Reset
           </button>
         </article>
       </main>
