@@ -7,7 +7,6 @@ function Home() {
 
   const [activate, setActivate] = useState(false);
 
-  const [timer, setTimer] = useState(0);
   const [hours, setHours] = useState(0);
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
@@ -21,7 +20,6 @@ function Home() {
     switch (name) {
       case 'confirm-button':
         setActivate(true);
-        console.log(hours, minutes, seconds)
         break;
       default:
         break;
@@ -31,12 +29,21 @@ function Home() {
   const onChangeFunction = ({ target: { name, value } }) => {
     switch (name) {
       case 'input-hours':
+        if (hours > 0) {
+          break;
+        }
         setHours(value);
         break;
       case 'input-minutes':
+        if (hours > 0) {
+          break;
+        }
         setMinutes(value);
         break;
       case 'input-seconds':
+        if (hours > 0) {
+          break;
+        }
         setSeconds(value)
         break;
       default:
@@ -51,7 +58,18 @@ function Home() {
       />
       <main>
         <article>
-          <h2>Hours : Minutes : Seconds</h2>
+          {
+            activate && (
+              <div>
+                <span>{`
+                ${hours.toString().padStart(2, '0')} :
+                ${minutes.toString().padStart(2, '0')} :
+                ${seconds.toString().padStart(2, '0')}
+                `}
+                </span>
+              </div>
+            )
+          }
         </article>
         <article>
           <label htmlFor="input-hours">Hours</label>
