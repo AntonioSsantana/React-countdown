@@ -20,7 +20,7 @@ function Login() {
         setCredentials({
           ...userCredentials,
           email: value
-        })
+        });
         break;
       case 'password-input':
         setCredentials({
